@@ -115,7 +115,7 @@ int main() {
                         }
                         // determine all unknowns
                         bx[i] = get_bx(l3, cx, q3);
-                        by[i] = get_by(l3, cx, q3);
+                        by[i] = get_by(l3, cy, q3);
                         hyp[i] = get_hypoteneus(bx[i], by[i]);
                         q1[i] = get_q1(angle_cosLaw(l1, hyp[i], l2), by[i], bx[i]);
                         q2[i] = get_q2(angle_cosLaw(l2, hyp[i], l1), by[i], bx[i]);
