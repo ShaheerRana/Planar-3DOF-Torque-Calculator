@@ -34,6 +34,10 @@ double min_l2 = 0;
 double min_l3 = 0;
 double min_q1 = 0;
 double min_q2 = 0;
+double min_ax = 0;
+double min_ay = 0;
+double min_bx = 0;
+double min_by = 0;
 
 double rad(double deg) {
     return deg * M_PI / 180;
@@ -89,11 +93,12 @@ int main() {
 
                     // determine moment on origin:
                     double torque = 9.81*((4*l1)*(0.5*ax) + (2*l2)*(ax+(0.5*(bx-ax))) + (1*l3)*(ax+bx+0.5*(cx-bx)) + 5*cx);
-                    
+
                     // print results
-                    cout << "l1 = " << l1 << ", l2 = " << l2 << ", l3 = " << l3;
-                    cout << ", bx = " << bx << ", by = " << by << ", hyp = " << hyp;
-                    cout << ", q1 = " << q1 << ", q2 = " << q2;
+                    cout << "l1 = " << l1 << ", l2 = " << l2 << ", l3 = " << l3
+                         << ", q1 = " << q1 << ", q2 = " << q2;
+                    cout << ", ax = " << ax << ", ay = " << ay
+                         << ", bx = " << bx << ", by = " << by << ", hyp = " << hyp;
                     cout << ": M = " << torque << endl;
                     if (abs(torque) < abs(min_torque))
                     {
@@ -103,6 +108,10 @@ int main() {
                         min_l3 = l3;
                         min_q1 = q1;
                         min_q2 = q2;
+                        min_ax = ax;
+                        min_ay = ay;
+                        min_bx = bx;
+                        min_by = by;
                     }
                 }
             }
@@ -110,6 +119,8 @@ int main() {
     }
     cout << endl
          << "Min Torque: " << min_torque << endl;
-    cout << "l1 = " << min_l1 << ", l2 = " << min_l2 << ", l3 = " << min_l3;
-                    cout << ", q1 = " << min_q1 << ", q2 = " << min_q2 << endl;
+    cout << "l1 = " << min_l1 << ", l2 = " << min_l2 << ", l3 = " << min_l3
+         << ", q1 = " << min_q1 << ", q2 = " << min_q2;
+    cout << ", ax = " << min_ax << ", ay = " << min_ay
+         << ", bx = " << min_bx << ", by = " << min_by;
 }
