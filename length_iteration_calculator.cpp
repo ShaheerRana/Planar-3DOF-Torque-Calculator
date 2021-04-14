@@ -5,8 +5,8 @@
 using namespace std;
 
 // Search Parameters:
-const double MAX_LENGTH = 1.0;
-const double MIN_LENGTH = 0.3;
+const double MAX_LENGTH = 2;
+const double MIN_LENGTH = 0.1;
 const double INCREMENT_LENGTH = 0.1;
 
 // Position 1:
@@ -137,21 +137,27 @@ int main() {
                     // finalize T value:
                     t_total = sqrt(t_total);
                     std::cout << "T_total = " << t_total << endl;
-                    // select smallest T:
-                    if (abs(t_total) < abs(min_t))
+                    // reject bad angles
+                    if ((q1[0] < M_PI && q1[0] > 0) && (q1[1] < M_PI && q1[1] > 0) && (q1[2] < M_PI && q1[2] > 0)
+                        && (q2[0] < M_PI && q2[0] > 0) && (q2[1] < M_PI && q2[1] > 0) && (q2[2] < M_PI && q2[2] > 0))
                     {
-                        min_t = t_total;
-                        min_l1 = l1;
-                        min_l2 = l2;
-                        min_l3 = l3;
-                        for (int i = 0; i < 3; i++) {
-                            min_q1[i] = q1[i];
-                            min_q2[i] = q2[i];
-                            min_ax[i] = ax[i];
-                            min_ay[i] = ay[i];
-                            min_bx[i] = bx[i];
-                            min_by[i] = by[i];
-                            min_torque[i] = torque[i];
+                        // select smallest T
+                        if (abs(t_total) < abs(min_t))
+                        {
+                            min_t = t_total;
+                            min_l1 = l1;
+                            min_l2 = l2;
+                            min_l3 = l3;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                min_q1[i] = q1[i];
+                                min_q2[i] = q2[i];
+                                min_ax[i] = ax[i];
+                                min_ay[i] = ay[i];
+                                min_bx[i] = bx[i];
+                                min_by[i] = by[i];
+                                min_torque[i] = torque[i];
+                            }
                         }
                     }
                 }
