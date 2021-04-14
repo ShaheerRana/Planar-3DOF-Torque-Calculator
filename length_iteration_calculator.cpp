@@ -5,9 +5,9 @@
 using namespace std;
 
 // Search Parameters:
-const double MAX_LENGTH = 2;
+const double MAX_LENGTH = 5;
 const double MIN_LENGTH = 0.1;
-const double INCREMENT_LENGTH = 0.1;
+const double INCREMENT_LENGTH = 0.05;
 
 // Position 1:
 const double q3_1 = -M_PI/3;
@@ -137,9 +137,9 @@ int main() {
                     // finalize T value:
                     t_total = sqrt(t_total);
                     std::cout << "T_total = " << t_total << endl;
-                    // reject bad angles
-                    if ((q1[0] < M_PI && q1[0] > 0) && (q1[1] < M_PI && q1[1] > 0) && (q1[2] < M_PI && q1[2] > 0)
-                        && (q2[0] < M_PI && q2[0] > 0) && (q2[1] < M_PI && q2[1] > 0) && (q2[2] < M_PI && q2[2] > 0))
+                    // reject bad coordinates
+                    // if (by[0] >= 0 && by[1] >= 0 && by[2] >= 0 && ay[0] >= 0 && ay[1] >= 0 && ay[2] >= 0)
+                    if (true)
                     {
                         // select smallest T
                         if (abs(t_total) < abs(min_t))
@@ -171,7 +171,7 @@ int main() {
     std::cout << "l1 = " << min_l1 << ", l2 = " << min_l2 << ", l3 = " << min_l3 << endl;
     for (int i = 0; i < 3; i++) {
         std::cout << "Position " << i+1 << ": ";
-        std::cout << "q1 = " << min_q1[i] << ", q2 = " << min_q2[i];
+        std::cout << "q1 = " << min_q1[i]*180/M_PI << ", q2 = " << min_q2[i]*180/M_PI;
         std::cout << ", ax = " << min_ax[i] << ", ay = " << min_ay[i] << ", bx = " << min_bx[i] << ", by = " << min_by[i];
         std::cout << ", T" << i+1 << " = " << min_torque[i] << endl;
     }
